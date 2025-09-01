@@ -1,1 +1,18 @@
 services:
+  ros-neotic:
+    build:
+      context: .
+      dockerfile: dockerfile-ROS
+    image: ros-neotic:latest
+    container_name: ros-neotic
+    stdin_open: true
+    tty: true
+    environment:
+      # 对远端X服务器更稳的环境变量（可按需删改）
+      - QT_X11_NO_MITSHM=1 
+      - DISPLAY=192.168.1.104:0.0 # 请修改为你的windows IP
+    # - DISPLAY=${DISPLAY}  
+    volumes:
+      # X11 
+      - /tmp/.X11-unix:/tmp/.X11-unix
+
