@@ -1,16 +1,16 @@
 services:
-  ros-neotic:
+  learn_ros-noetic:
     build:
       context: .
-      dockerfile: dockerfile-ROS
-    image: ros-neotic:latest
-    container_name: ros-neotic
+      dockerfile: df-learn_ros_noetic
+    image: learn_ros-noetic:latest
+    container_name: learn_ros-noetic
     stdin_open: true
     tty: true
     environment:
       # 对远端X服务器更稳的环境变量（可按需删改）
       - QT_X11_NO_MITSHM=1 
-      - DISPLAY=192.168.1.104:0.0 # 请修改为你的windows IP
+      - DISPLAY=${DISPLAY_IP:-192.168.1.104:0.0} # 自动检测Windows IP，默认值作为备用
     # - DISPLAY=${DISPLAY}  
     volumes:
       # X11 

@@ -1,0 +1,23 @@
+FROM osrf/ros:noetic-desktop-full
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+# 安装依赖，并配置ROS环境
+# 安装依赖包
+RUN apt-get update && apt-get install -y \
+    gedit x11-apps mesa-utils dbus-x11 \
+    # 从 Ubuntu 20.04（Focal）开始，系统仓库已经全面转向 Python3, 相关工具包也已更新为 Python3 版本
+    python3-rosdep python3-rosinstall python3-rosinstall-generator python3-wstool build-essential \
+    && rm -rf /var/lib/apt/lists/*
+
+# 更新rosdep
+RUN rosdep update || true
+
+# 配置ROS环境到bashrc
+RUN echo "source /opt/ros/noetic/setup.bash" >> /root/.bashrc
+
+# 工作目录
+WORKDIR /root/catkin_ws
+
+# 启动容器时默认执行的命令
+CMD ["bash"]
