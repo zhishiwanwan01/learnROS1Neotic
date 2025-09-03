@@ -2,7 +2,8 @@ services:
   learn_ros-noetic:
     build:
       context: .
-      dockerfile: df-learn_ros_noetic
+      dockerfile: dockerfile
+    hostname: lrnROS-noetic
     image: learn_ros-noetic:latest
     container_name: learn_ros-noetic
     stdin_open: true
@@ -15,4 +16,6 @@ services:
     volumes:
       # X11 
       - /tmp/.X11-unix:/tmp/.X11-unix
+      # 挂载工作目录
+      - ../src:/root/catkin_ws/src
 
