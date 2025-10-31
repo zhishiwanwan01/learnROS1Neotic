@@ -204,3 +204,8 @@ include_directories(
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
+add_executable(hw_tc_talker src/hw_tc_talker.cpp)
+add_executable(hw_tc_listener src/hw_tc_listener.cpp)
+
+target_link_libraries(hw_tc_talker ${catkin_LIBRARIES})
+target_link_libraries(hw_tc_listener ${catkin_LIBRARIES})
